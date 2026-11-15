@@ -1,0 +1,10 @@
+{{ define "main" }}
+{{- $c := .Content | string -}}
+{{- if not (strings.Contains $c `class="wrap breadcrumbs"`) -}}<div class="wrap breadcrumbs"><a href="{{ site.Home.RelPermalink }}">JAIR</a><span>/</span>{{ with .Params.parent_url }}<a href="{{ strings.TrimPrefix "/" . | relURL }}">{{ $.Params.parent_title }}</a><span>/</span>{{ end }}{{ .Title }}</div>{{- end -}}
+{{- if or (strings.Contains $c "content-hero") (strings.Contains $c "jm-hero") (strings.Contains $c "author-hero") -}}
+{{ partial "content.html" $c }}
+{{- else -}}
+<header class="wrap content-hero"><h1>{{ .Title }}</h1></header>
+<article class="wrap content-section {{ .Params.article_class | default "entry-body" }}">{{ partial "content.html" $c }}</article>
+{{- end -}}
+{{ end }}

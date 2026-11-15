@@ -1,0 +1,1 @@
+<nav class="jair-news-filters" aria-label="お知らせの分類"><a href="#news-updates" data-filter="all" aria-current="true">すべて</a>{{- range hugo.Data.news_categories -}}<a href="#news-updates" data-filter="{{ .slug }}">{{ .name }}</a>{{- end -}}</nav>

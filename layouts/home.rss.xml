@@ -1,0 +1,26 @@
+{{- /* 最新20件の投稿(Jekyll版 jekyll-feed 相当)。.xml でも html/template で処理されるので、エスケープは自動に任せる。 */ -}}
+{{- $posts := first 20 (where site.RegularPages "Type" "posts") -}}
+{{- printf `<?xml version="1.0" encoding="utf-8"?>` | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.Title }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ site.Params.description }}</description>
+    <language>ja</language>
+    {{- with index $posts 0 }}
+    <lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{- end }}
+    {{- with .OutputFormats.Get "RSS" }}
+    {{ printf `<atom:link href=%q rel="self" type=%q />` .Permalink .MediaType.Type | safeHTML }}
+    {{- end }}
+    {{- range $posts }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <guid isPermaLink="true">{{ .Permalink }}</guid>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <description>{{ .Summary | plainify | replaceRE `\s+` " " | strings.TrimSpace | truncate 300 }}</description>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

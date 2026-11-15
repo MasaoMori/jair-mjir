@@ -1,0 +1,56 @@
+# 参考サイト(デザインD)のメガメニューに対応。url は baseurl なしのパス。
+utility: {title: "お問い合わせ", url: "/お問い合わせ/"}
+items:
+  - {key: home, title: "ホーム", url: "/"}
+  - key: about
+    title: "協会について"
+    url: "/about/"
+    lead: "協会の目的・組織と、活動のご案内。"
+    links:
+      - {title: "日本IR協会とは", url: "/日本ir協会とは/"}
+      - {title: "定款", url: "/定款/"}
+      - {title: "組織", url: "/organization/"}
+      - {title: "これまでの実績", url: "/これまでの実績/"}
+      - {title: "個人情報保護方針", url: "/privacy-policy/"}
+  - key: meetings
+    title: "研究活動"
+    url: "/meetings/"
+    lead: "研究会への参加と、これまでの活動。"
+    links:
+      - {title: "研究会の日程", url: "/研究会日程/"}
+      - {title: "MJIR", url: "/conference/"}
+  - key: conference
+    title: "MJIR"
+    url: "/conference/"
+    lead: "開催情報から、発表・投稿、過去の集会まで。"
+    links:
+      - {title: "MJIRについて", url: "/conference/#mjir-intro"}
+      - {title: "MJIR2026 大会サイト", url: "https://mjir2026.jairweb.jp/home", external: true}
+      - {title: "過去の開催記録", url: "/mjir-history/"}
+      - {title: "論文集", url: "/archive/"}
+  - key: members
+    title: "会員の方へ"
+    url: "/members/"
+    lead: "登録情報の変更・会費・退会などの手続き。"
+    links:
+      - {title: "登録情報の変更", url: "/members/#member-update"}
+      - {title: "会費について", url: "/members/#member-fees"}
+      - {title: "退会手続き", url: "/members/#member-leave"}
+      - {title: "その他の会員向けお問い合わせ", url: "/members/#member-contact"}
+  - {key: membership, title: "入会案内", url: "/membership/"}
+footer:
+  main:
+    - {title: "協会について", url: "/about/"}
+    - {title: "研究活動", url: "/meetings/"}
+    - {title: "MJIR", url: "/conference/"}
+    - {title: "論文集", url: "/archive/"}
+    - {title: "お知らせ", url: "/news/"}
+    - {title: "入会案内", url: "/membership/"}
+  support:
+    - {title: "会員の方へ", url: "/members/"}
+    - {title: "お問い合わせ", url: "/お問い合わせ/"}
+    - {title: "個人情報保護方針", url: "/privacy-policy/"}
+    - {title: "サイトマップ", url: "/sitemap/"}
+  legacy:
+    - {title: "旧JAIRサイト ↗", url: "https://jairweb.jp/"}
+    - {title: "旧MJIRサイト ↗", url: "https://mjir.info/"}

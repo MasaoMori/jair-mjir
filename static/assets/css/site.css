@@ -1,0 +1,27 @@
+/* 統合サイト固有の補足(静的サイト用) */
+.jair-news-row[hidden] { display: none; }
+.entry-body img { max-width: 100%; height: auto; }
+.entry-body iframe { max-width: 100%; }
+.entry-body table { border-collapse: collapse; max-width: 100%; }
+.entry-body table th, .entry-body table td { border: 1px solid #dce6eb; padding: 6px 10px; }
+.entry-body { overflow-wrap: anywhere; }
+/* 整形済みテキスト(WordPressのpreformatted)は折り返す。スマートフォンで横にはみ出さないように */
+.entry-body pre, .entry-body pre code, .entry-body code { white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; max-width: 100%; }
+.entry-body pre { overflow-x: auto; }
+
+/* 投稿のアーカイブ(年 → 月 → 投稿) */
+.side .archive { background: #fff; border: 1px solid var(--line, #dce6eb); border-top: 4px solid var(--navy, #154774); }
+.archive h2 { margin: 0 0 10px; }
+.archive details { margin: 0; }
+.archive summary { cursor: pointer; padding: 8px 4px; font-weight: 700; color: var(--navy, #154774); border-bottom: 1px solid var(--line, #dce6eb); list-style: none; display: flex; align-items: center; gap: 6px; }
+.archive summary::-webkit-details-marker { display: none; }
+.archive summary::before { content: "▸"; font-size: .8em; transition: transform .15s; }
+.archive details[open] > summary::before { transform: rotate(90deg); }
+.archive .archive-month > summary { font-weight: 500; padding-left: 18px; font-size: 14px; }
+.archive .archive-count { font-weight: 400; color: var(--muted, #61717f); font-size: 12px; }
+.archive ul { list-style: none; margin: 0; padding: 4px 0 8px 34px; }
+.archive li { margin: 0; padding: 4px 0; font-size: 13px; line-height: 1.6; }
+.archive li a { color: var(--ink, #243747); }
+.archive li a:hover { color: var(--blue, #007fac); }
+.archive .archive-year { max-height: none; }
+@media (min-width: 761px) { .side .archive { max-height: 70vh; overflow-y: auto; } }

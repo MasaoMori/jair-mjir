@@ -1,0 +1,5 @@
+{{ define "main" }}
+<div class="wrap breadcrumbs"><a href="{{ site.Home.RelPermalink }}">JAIR</a><span>/</span>{{ .Title }}</div>
+<header class="wrap content-hero"><h1>{{ .Title }}</h1></header>
+<article class="wrap content-section entry-body">{{ partial "content.html" .Content }}</article>
+{{ end }}

@@ -1,0 +1,46 @@
+# GitHub Pages(jair-mjir)用。独自ドメインを決めたら baseURL を変え、params.noindex と preview_* を削除する。
+baseURL: "https://masaomori.github.io/jair-mjir/"
+title: "日本IR協会（JAIR）・MJIR"
+defaultContentLanguage: ja
+locale: ja
+timeZone: Asia/Tokyo
+
+# 旧Jekyll版のURLを維持するため、各ページは front matter の url で出力先を指定している。
+# 一覧ページ(/posts/ など)や分類ページは作らない。
+disableKinds: [section, taxonomy, term]
+disablePathToLower: true
+
+# 新しく作る投稿・ページの公開URL(front matter に url を書かない場合)。
+# 旧Jekyll版から移した既存のページは、front matter の url が優先される。
+# :slugorcontentbasename = front matter の slug、なければフォルダ名(バンドル)/ファイル名。
+permalinks:
+  page:
+    posts: "/:year/:month/:day/:slugorcontentbasename/"
+    pages: "/:slugorcontentbasename/"
+ignoreFiles: ['\.DS_Store$']
+
+# Hugo 0.170 は既定で .html のコンテンツファイルを拒否する。固定ページ10件(content/pages/*.html)は
+# 自サイトの手書きHTMLなので許可する(.org だけ拒否のまま)。外部の第三者が書いたコンテンツを入れるなら見直すこと。
+security:
+  allowContent: ['! ^text/org$']
+
+markup:
+  goldmark:
+    extensions:
+      linkify: false   # 本文中の裸のURL・メールアドレスを自動でリンクにしない(Jekyll版と同じ)
+    renderer:
+      unsafe: true   # 本文中の生HTMLをそのまま出力する
+
+outputs:
+  home: [HTML, RSS]
+outputFormats:
+  RSS:
+    baseName: feed   # /feed.xml (Jekyll版と同じ)
+
+params:
+  description: "日本インスティテューショナル・リサーチ協会（JAIR）と大学情報・機関調査研究会（MJIR）の統合サイト"
+  home_title: "JAIR｜日本IR協会"
+  # 検証用サイトの表示(本番では削除)
+  noindex: true
+  preview_notice: "統合サイト 検証用"
+  preview_sub: "JAIR・MJIR（GitHub Pages）"

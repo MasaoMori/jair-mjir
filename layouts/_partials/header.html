@@ -1,0 +1,22 @@
+{{- $nav := hugo.Data.navigation -}}
+<header class="jn-header" data-current="{{ if .IsHome }}home{{ else if eq .Type "posts" }}news{{ else }}{{ .Params.nav_section }}{{ end }}">
+  {{- with site.Params.preview_notice -}}<div class="jn-study"><div class="jn-wrap">{{ . }} <span>{{ site.Params.preview_sub }}</span></div></div>{{- end }}
+  <div class="jn-wrap jn-brandrow">
+    <a class="jn-brand" href="{{ site.Home.RelPermalink }}" aria-label="日本IR協会 ホーム"><picture><source media="(max-width:640px)" srcset="{{ "assets/img/jair-logo-mobile.svg" | relURL }}"><img src="{{ "assets/img/jair-logo-pc.svg" | relURL }}" alt="一般社団法人 日本インスティテューショナル・リサーチ協会" width="1280" height="232"></picture></a>
+    <nav class="jn-utility" aria-label="お問い合わせ"><a href="{{ strings.TrimPrefix "/" $nav.utility.url | relURL }}">{{ $nav.utility.title }}</a></nav>
+    <button class="jn-menu" aria-controls="jn-nav" aria-expanded="false">メニュー <span aria-hidden="true">＋</span></button>
+  </div>
+  <nav id="jn-nav" class="jn-wrap jn-nav" aria-label="主なメニュー"><div class="jn-grid">
+    {{- range $nav.items -}}
+    <div class="jn-item" data-section="{{ .key }}"><div class="jn-top"><a href="{{ strings.TrimPrefix "/" .url | relURL }}">{{ .title }}</a>
+      {{- if .links -}}<button class="jn-toggle" aria-label="{{ .title }}の関連メニュー" aria-expanded="false" aria-controls="jn-panel-{{ .key }}"><span aria-hidden="true">⌄</span></button>{{- end -}}</div>
+      {{- if .links -}}
+      <section id="jn-panel-{{ .key }}" class="jn-panel" aria-labelledby="jn-title-{{ .key }}" hidden><div class="jn-wrap jn-panel-inner">
+        <div class="jn-heading"><h2 id="jn-title-{{ .key }}">{{ .title }}</h2><p>{{ .lead }}</p></div>
+        <div class="jn-links">{{- range .links -}}<a href="{{ if .external }}{{ .url }}{{ else }}{{ strings.TrimPrefix "/" .url | relURL }}{{ end }}">{{ .title }}</a>{{- end -}}</div>
+        <button class="jn-close">閉じる ×</button></div></section>
+      {{- end -}}
+    </div>
+    {{- end -}}
+  </div><div class="jn-mobile-links"><a href="{{ strings.TrimPrefix "/" $nav.utility.url | relURL }}">{{ $nav.utility.title }}</a></div></nav>
+</header>

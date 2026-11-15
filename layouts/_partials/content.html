@@ -1,0 +1,12 @@
+{{- /* 本文中の「/」で始まるリンク・画像(href, src, srcset)に baseURL のパスを付ける。「//」(プロトコル相対)には付けない。 */ -}}
+{{- $b := strings.TrimSuffix "/" site.Home.RelPermalink -}}
+{{- $h := . | string -}}
+{{- if $b -}}
+  {{- $h = $h | replaceRE `(href|src|srcset)="/([^/])` (printf `${1}="%s/${2}` $b) -}}
+  {{- $h = strings.Replace $h ", /wp-content/" (printf ", %s/wp-content/" $b) -}}
+{{- end -}}
+{{- /* ショートコードなど、すでに baseURL が付いているリンクに二重で付かないようにする */ -}}
+{{- if $b -}}
+  {{- $h = $h | replaceRE (printf `(href|src|srcset)="%s%s/` $b $b) (printf `${1}="%s/` $b) -}}
+{{- end -}}
+{{- $h | safeHTML -}}

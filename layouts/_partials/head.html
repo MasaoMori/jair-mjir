@@ -1,0 +1,35 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{- if or site.Params.noindex (strings.Contains site.BaseURL "github.io") -}}<meta name="robots" content="noindex, nofollow">{{- end -}}
+  {{- $title := cond .IsHome site.Params.home_title .Title -}}
+  {{- $desc := site.Params.description -}}
+  {{- if eq .Type "posts" -}}
+    {{- $s := .Summary | plainify | replaceRE `\s+` " " | strings.TrimSpace -}}
+    {{- if $s }}{{ $desc = $s | truncate 160 }}{{ end -}}
+  {{- end }}
+  <title>{{ $title }} | {{ site.Title }}</title>
+  <meta name="description" content="{{ $desc }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta property="og:title" content="{{ $title }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:locale" content="ja">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ site.Title }}">
+  <meta property="og:type" content="{{ if eq .Type "posts" }}article{{ else }}website{{ end }}">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="{{ "assets/img/jair-logo-mobile.svg" | relURL }}" type="image/svg+xml">
+  {{- $css := slice "b-base" "b-design" "b-wp" "parent-wp" "d-navigation" "news-categories" "footer" "page-titles" "utility" "native" "site" -}}
+  {{- if .IsHome -}}
+    {{- $css = slice "d-home" "d-navigation" "news-categories" "footer" "utility" "native" "site" -}}
+  {{- end }}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+  {{- range $css }}
+  <link rel="stylesheet" href="{{ printf "assets/css/%s.css" . | relURL }}">
+  {{- end }}
+  {{- with site.Home.OutputFormats.Get "RSS" }}
+  <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
+  {{- end }}
+  <script src="{{ "assets/js/navigation.js" | relURL }}" defer></script>
+  <script src="{{ "assets/js/news-filter.js" | relURL }}" defer></script>
+</head>

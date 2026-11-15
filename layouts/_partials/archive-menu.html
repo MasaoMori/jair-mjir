@@ -1,0 +1,13 @@
+{{- /* 投稿を年→月で展開できるメニュー(details/summary。JS不要) */ -}}
+{{- $posts := where site.RegularPages "Type" "posts" -}}
+<section class="archive" aria-labelledby="archive-title"><h2 id="archive-title">投稿のアーカイブ</h2>
+{{- range $posts.GroupByDate "2006" }}
+  <details class="archive-year"><summary>{{ .Key }}年 <span class="archive-count">({{ len .Pages }})</span></summary>
+  {{- range .Pages.GroupByDate "01" }}
+    <details class="archive-month"><summary>{{ (index .Pages 0).Date.Format "1" }}月 <span class="archive-count">({{ len .Pages }})</span></summary>
+      <ul>{{- range .Pages -}}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{- end -}}</ul>
+    </details>
+  {{- end }}
+  </details>
+{{- end }}
+</section>

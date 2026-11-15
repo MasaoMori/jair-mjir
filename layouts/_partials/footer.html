@@ -1,0 +1,8 @@
+{{- $nav := hugo.Data.navigation -}}
+<footer class="jair-footer"><div class="wrap jair-footer-grid">
+  <div class="jair-footer-brand"><a class="jair-footer-logo" href="{{ site.Home.RelPermalink }}" aria-label="日本IR協会 ホーム"><picture><source media="(max-width:600px)" srcset="{{ "assets/img/jair-logo-mobile.svg" | relURL }}"><img src="{{ "assets/img/jair-logo-pc.svg" | relURL }}" alt="一般社団法人 日本インスティテューショナル・リサーチ協会"></picture></a>
+    <p class="jair-footer-address"><strong>法人所在地</strong><br>東京都目黒区下目黒一丁目１番１４号<br> コノトラビル7階</p></div>
+  <div class="jair-footer-links"><h2>主要ページ</h2>{{- range $nav.footer.main }} <a href="{{ strings.TrimPrefix "/" .url | relURL }}">{{ .title }}</a>{{- end }}</div>
+  <div class="jair-footer-links"><h2>利用・連絡案内</h2>{{- range $nav.footer.support }} <a href="{{ strings.TrimPrefix "/" .url | relURL }}">{{ .title }}</a>{{- end }}
+    {{- if site.Params.preview_notice -}}<div class="jair-footer-legacy"><h3>移行期間中の参照先</h3>{{- range $nav.footer.legacy -}}<a href="{{ .url }}">{{ .title }}</a>{{- end -}}</div>{{- end -}}</div>
+</div><div class="wrap jair-footer-bottom">一般社団法人 日本インスティテューショナル・リサーチ協会{{- if site.Params.preview_notice -}}<span>検証用サイト</span>{{- end -}}</div></footer>

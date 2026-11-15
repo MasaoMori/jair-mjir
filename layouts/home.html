@@ -1,0 +1,14 @@
+{{ define "main" }}
+{{- $d := hugo.Data.home -}}
+<section class="portal" aria-labelledby="portal-title"><div class="wrap"><div class="portal-grid">
+  <div class="portal-heading"><h1 id="portal-title">{{ $d.heading | safeHTML }}</h1><p>{{ $d.lead | safeHTML }}</p></div>
+  <a class="feature-banner" href="{{ if strings.HasPrefix $d.feature.url "/" }}{{ strings.TrimPrefix "/" $d.feature.url | relURL }}{{ else }}{{ $d.feature.url }}{{ end }}"><div class="feature-top"><span>{{ $d.feature.top | safeHTML }}</span><span aria-hidden="true"></span></div><div class="feature-body"><p class="feature-mark" aria-hidden="true">MJIR</p><h2>{{ $d.feature.heading | safeHTML }}</h2><p>{{ $d.feature.sub | safeHTML }}</p></div><div class="feature-bottom"><strong>{{ $d.feature.bottom | safeHTML }}</strong><span>開催案内を見る <b aria-hidden="true">→</b></span></div></a>
+</div></div></section>
+<div class="wrap content"><section class="news"><div class="section-head"><h2>お知らせ</h2><a href="{{ "news/" | relURL }}">一覧を見る →</a></div>
+  <div class="jair-category-news" data-limit="10">{{ partial "news-filter.html" . }}
+    <div id="news-updates" class="jair-news-rows">{{ partial "news-rows.html" (dict "posts" (where site.RegularPages "Type" "posts") "limit" 10) }}</div></div>
+  <p class="note">選択した分類の最新10件を掲載しています。</p></section>
+  <aside class="side"><section class="about"><h2>{{ $d.about.title | safeHTML }}</h2><p>{{ $d.about.text | safeHTML }}</p><a href="{{ "about/" | relURL }}">{{ $d.about.link | safeHTML }}</a></section>
+    <section class="publication"><h2>研究成果を読む</h2><a class="booklink" href="{{ $d.publication.url }}"><div class="book" aria-hidden="true">{{ $d.publication.mark | safeHTML }}<strong>{{ $d.publication.year | safeHTML }}</strong><small>{{ $d.publication.vol | safeHTML }}</small></div><div><span>J-STAGE</span><h3>{{ $d.publication.title | safeHTML }}</h3><p>論文集を読む ↗</p></div></a></section>{{ partial "archive-menu.html" . }}</aside>
+</div>
+{{ end }}

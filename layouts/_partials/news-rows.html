@@ -1,0 +1,8 @@
+{{- /* dict "posts" 投稿一覧 "limit" 件数(省略可)。data-cat で分類を絞り込む。limit を超える行は hidden。 */ -}}
+{{- $limit := .limit -}}
+{{- range $i, $p := .posts -}}
+{{- $slug := $p.Params.news_category | default "related" -}}
+{{- $name := "関連情報" -}}
+{{- range where hugo.Data.news_categories "slug" $slug }}{{ $name = .name }}{{ end -}}
+<div class="jair-news-row" data-cat="{{ $slug }}"{{ if and $limit (gt (add $i 1) $limit) }} hidden{{ end }}><time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "2006.01.02" }}</time><span class="jair-news-labels"><span class="jair-news-label">{{ $name }}</span></span><a href="{{ $p.RelPermalink }}">{{ $p.Title }}<span aria-hidden="true"> →</span></a></div>
+{{- end -}}
