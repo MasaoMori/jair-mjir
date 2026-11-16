@@ -108,7 +108,7 @@ https://mjir2026.jairweb.jp/</td>
 <td> </td>
 </tr>
 <tr>
-<td><a href="https://mjir.info/" target="_blank" rel="noreferrer noopener">MJIR2025</a></td>
+<td><a href="/conference/">MJIR2025</a></td>
 <td>2025年11月7日(金)～11月9日(日)</td>
 <td>麻布大学にて開催</td>
 </tr>
