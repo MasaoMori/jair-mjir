@@ -1,4 +1,4 @@
-# jair-mjir — JAIR・MJIR 統合サイト(検証用・Hugo版)
+# jair-mjir — JAIR・MJIR 統合サイト(Hugo版)
 
 ## サイトの更新方法
 
@@ -16,7 +16,7 @@
 5. 右上の **Commit changes…** を押し、メッセージ(例: `お知らせ: MJIR2027 発表募集`)を書いて、**Commit directly to the `main` branch** を選んで **Commit changes**。
    - 公開前に確認したいときは、**Create a new branch for this commit and start a pull request** を選ぶ。プルリクエストが作られ、内容を確認してから **Merge pull request** で `main` に統合すると公開される。
 6. 画像・PDFを添付するときは、手順 5 のあと、作ったフォルダ(`content/posts/mjir2027-call/`)を開き、**Add file → Upload files** でファイルをドラッグして、同じように Commit する(フォルダが無いうちはアップロードできないので、`index.md` を先に作る)。
-7. 公開の進み具合は、リポジトリの **Actions** タブで見る。緑のチェックが付けば公開済み(https://masaomori.github.io/jair-mjir/ )。赤い × のときは、中を開いてエラーを確認する。
+7. 公開の進み具合は、リポジトリの **Actions** タブで見る。緑のチェックが付けば公開済み(https://jairweb.jp/ )。赤い × のときは、中を開いてエラーを確認する。
 
 既存のページを直すときは、該当ファイルを開いて右上の鉛筆アイコン(Edit)を押し、同じように Commit する。
 
@@ -43,7 +43,7 @@ mkdir content/posts/mjir2027-call
 
 # 3. 画面で確認する(止めるときは Ctrl+C)
 hugo server --renderToMemory --noBuildLock
-#   http://localhost:1313/jair-mjir/ を開く。下書き(draft: true)も見るなら -D を付ける。
+#   http://localhost:1313/ を開く。下書き(draft: true)も見るなら -D を付ける。
 #   1313番が使用中なら  --port 1314 --baseURL http://localhost:1314/  を付ける。
 
 # 4. 変更を記録して、GitHub に送る
@@ -135,7 +135,7 @@ nav_section: "about"
 ```
 
 - ファイルは、そのページの公開URLの下(例: `/2026/12/01/mjir2027-call/flyer.pdf`)に公開される。
-- 複数のページで使う画像や、サイト全体の画像は、`static/` に置いて `/` から始まるパスで指す(例: `/assets/img/xxx.png`)。公開時に、GitHub Pages のパス(`/jair-mjir/`)が自動で付く。
+- 複数のページで使う画像や、サイト全体の画像は、`static/` に置いて `/` から始まるパスで指す(例: `/assets/img/xxx.png`)。公開URLのドメイン直下(`https://jairweb.jp/assets/img/xxx.png`)になる。
 - サイト内のリンクも同じ書き方でよい(例: `[入会案内](/membership/)`)。
 
 ### 既存の投稿・ページを直す
@@ -145,7 +145,7 @@ nav_section: "about"
 ## このサイトについて
 
 日本インスティテューショナル・リサーチ協会(JAIR、jairweb.jp)と大学情報・機関調査研究会(MJIR、mjir.info)の公開コンテンツを1つの Hugo サイトにまとめたもの。
-`jekyll-site` の Jekyll 版から変換した。GitHub Pages(https://masaomori.github.io/jair-mjir/)で表示を確認する。**独自ドメインは未設定**。検索エンジンには載せない(noindex)。
+`jekyll-site` の Jekyll 版から変換した。GitHub Pages に独自ドメイン https://jairweb.jp/ で公開している(旧 `masaomori.github.io/jair-mjir/` は、独自ドメインに自動で転送される)。mjir.info は、別リポジトリ `mjir-redirect` で `https://jairweb.jp/conference/` に転送している。
 
 - 内容: 投稿89件(`content/posts`)、固定ページ106件(`content/pages`)、メディア(`static/wp-content/uploads`)。
 - 旧URL: Jekyll版と同じ。旧サイトから移したページは、front matter の `url` で公開URLを指定している。新しく作るページは `hugo.yaml` の `permalinks` で決まる(投稿は `/年/月/日/フォルダ名/`、固定ページは `/フォルダ名/`)。一覧ページ(`/posts/` など)や分類ページは作らない。
@@ -154,9 +154,9 @@ nav_section: "about"
 
 ## ローカルでの確認
 ```bash
-hugo server                       # http://localhost:1313/jair-mjir/
-hugo --baseURL https://masaomori.github.io/jair-mjir/   # public/ に出力
-python3 -I scripts/verify.py public /jair-mjir          # 検証(ビルド後)
+hugo server                       # http://localhost:1313/
+hugo                              # public/ に出力(baseURL は https://jairweb.jp/)
+python3 -I scripts/verify.py public                     # 検証(ビルド後)
 ```
 Hugo は 0.170.0 で確認(`HUGO_VERSION` は `.github/workflows/pages.yml`)。
 

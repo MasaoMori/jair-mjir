@@ -1,5 +1,5 @@
-# GitHub Pages(jair-mjir)用。独自ドメインを決めたら baseURL を変え、params.noindex と preview_* を削除する。
-baseURL: "https://masaomori.github.io/jair-mjir/"
+# 本番(独自ドメイン jairweb.jp、GitHub Pages で公開)。
+baseURL: "https://jairweb.jp/"
 title: "日本IR協会（JAIR）・MJIR"
 defaultContentLanguage: ja
 locale: ja
@@ -40,7 +40,3 @@ outputFormats:
 params:
   description: "日本インスティテューショナル・リサーチ協会（JAIR）と大学情報・機関調査研究会（MJIR）の統合サイト"
   home_title: "JAIR｜日本IR協会"
-  # 検証用サイトの表示(本番では削除)
-  noindex: true
-  preview_notice: "統合サイト 検証用"
-  preview_sub: "JAIR・MJIR（GitHub Pages）"
